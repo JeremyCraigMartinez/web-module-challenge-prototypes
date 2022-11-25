@@ -1,4 +1,4 @@
-import functions from './index';
+const functions = require('./index');
 
 describe('fooFunction', ()=>{
     it('foo returns foo', ()=>{
@@ -47,7 +47,7 @@ describe('Instances of Person', () => {
       expect(str).toContain('20')
     })
   })
-  
+
   //car
   describe('Instances of Car', () => {
     let batmobile
@@ -76,7 +76,7 @@ describe('Instances of Person', () => {
       expect(batmobile.tank).toEqual(20)
     })
   })
-  
+
   describe('Instances of Baby', () => {
     let baby
     beforeEach(() => {
@@ -104,4 +104,3 @@ describe('Instances of Person', () => {
         expect(baby.__proto__.poop).not.toBeUndefined();
       })
   })
-

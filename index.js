@@ -15,10 +15,26 @@
         + It should return a string with `name` and `age`. Example: "Mary, 50"
 */
 
-function Person() {
-
+function Person(name, age) {
+  this.name = name;
+  this.age = age;
+  this.stomach = [];
 }
 
+Person.prototype.eat = function(someFood) {
+  if(this.stomach.length === 10) {
+    console.log('Person is FULL!', this.stomach.length);
+  } else this.stomach.push(someFood);
+}
+
+Person.prototype.poop = function() {
+  this.stomach = [];
+  return '...and that is that!'
+}
+
+Person.prototype.toString = function() {
+  return `${this.name}, ${this.age}`;
+}
 
 /*
   TASK 2
@@ -36,10 +52,16 @@ function Person() {
         + The `drive` method should return a string "I ran out of fuel at x miles!" x being `odometer`.
 */
 
-function Car() {
-
+function Car(model, mpg) {
+  this.model = model;
+  this.milesPerGallon = mpg;
+  this.tank = 0;
+  this.odometer = 0;
 }
 
+Car.prototype.fill = function(gallons) {
+  this.tank += gallons;
+}
 
 /*
   TASK 3
@@ -49,18 +71,23 @@ function Car() {
         + Should return a string "Playing with x", x being the favorite toy.
 */
 
-function Baby() {
-
+function Baby(name, age, favoriteToy) {
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
 
+Baby.prototype = Object.create(Person.prototype)
+Baby.prototype.play = function(){
+  return `Playing with ${this.favoriteToy}`
+}
 
-/* 
+/*
   TASK 4
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1.
+  2.
+  3.
+  4.
 */
 
 ///////// END OF CHALLENGE /////////
@@ -73,7 +100,7 @@ function foo(){
 foo();
 module.exports = {
   foo,
-  Person, 
+  Person,
   Car,
   Baby
 }
